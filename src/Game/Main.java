@@ -45,6 +45,7 @@ public class Main implements Serializable{
             for(int i = 0; i < 10; i++){
                 if(profiles[i] != null){
                     out.writeObject(profiles[i].getName());
+                    saveProfile(profiles[i]);
                 }
                 else{
                     out.writeObject("Blank");
@@ -63,14 +64,14 @@ public class Main implements Serializable{
         try{
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dir));
             out.writeObject(p.getName());
-            out.writeObject(p.getCurrentColor());
-            out.writeObject(p.getColorInventory());
+            out.writeObject(p.getCurrentColor().getRed());
+            out.writeObject(p.getCurrentColor().getGreen());
+            out.writeObject(p.getCurrentColor().getBlue());
             out.close();
         } catch (IOException e) {
             dir = new File("src/Profiles");
             dir.mkdirs();
             saveProfile(p);
-            // e.printStackTrace();
         }
     }
 
@@ -83,23 +84,45 @@ public class Main implements Serializable{
                     String nam = (String) in.readObject();
                     if(!nam.equals("Blank")){
                         profiles[i].setName((String) in.readObject());
+                        loadProfile(profiles[i]);
                     }
                 } catch (ClassNotFoundException e) {
+                    save();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            save();
+        } catch (IOException e) {
+            save();
+        }
+    }
+    public static void loadProfile(Profile p){
+        ObjectInputStream in;
+        try {
+            in = new ObjectInputStream(new FileInputStream("src/Profiles/Profile"));
+            File file = new File("src/Profiles/" + p.getName());
+            if(file.exists()){
+                try {
+                    p.setName((String) in.readObject());
+                    ObjectInputStream inner = new ObjectInputStream(new FileInputStream("src/Profiles/" + p.getName()));
+                    in.readObject();
+                    int r = inner.readInt();
+                    int g = inner.readInt();
+                    int b = inner.readInt();
+                    p.setCurrentColor(new Color(r, g, b));
+                    
+                } catch (ClassNotFoundException e) {
+                    // System.exit(0);
                     e.printStackTrace();
                 }
             }
         } catch (FileNotFoundException e) {
+            // System.exit(0);
             e.printStackTrace();
         } catch (IOException e) {
+            // System.exit(0);
             e.printStackTrace();
         }
-    }
-    public static void loadProfile(int slot, Profile p){
-        if(slot > 4){slot = 4;}
-        if(slot < 1){slot = 1;}
-        p.setSlot(slot);
-        slot -= 1;
-        players[slot] = p;
     }
     
     static JFrame frame = new JFrame("2 3 4 Player Games");
@@ -107,10 +130,10 @@ public class Main implements Serializable{
     public static void main(String[] args) {
         One = new Profile("Matthew");
         Two = new Profile("Tyson");
-        // save();
-
         load();
-        
+        save();
+        System.out.println(One);
+        System.out.println(Two);
         frame.setVisible(true);
         frame.setAutoRequestFocus(true);
         frame.setSize(1000, 600);
