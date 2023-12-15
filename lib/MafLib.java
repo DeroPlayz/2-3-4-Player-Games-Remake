@@ -44,6 +44,12 @@ public class MafLib{
     
     static Scanner Scan = new Scanner(System.in);
     
+    /**
+     * Asks the user to input text into the console.
+     * @param Prompt - What question is printed to the console.
+     * @param EndOnNewline - Whether or not the console should move to the next line before accepting input.
+     * @return What the user typed.
+     */
     public static String askString(String Prompt, Boolean EndOnNewline){
         if(EndOnNewline == true){
             System.out.println(Prompt);
@@ -54,14 +60,14 @@ public class MafLib{
         String response = Scan.nextLine();
         return response;
     }
-        static String ans = "";
 
-    public static void askString(String Prompt) {
-        // log.setText(Prompt);
-        frame.add(response);
-        response.setBounds(680, 500, 200, 20);
-    }
-
+    /**
+     * Asks the user to input a number into the console.
+     * @param Prompt - What question is printed to the console.
+     * @param EndOnNewline - Whether or not the console should move to the next line before accepting input.
+     * @return What the user typed.<p>
+     * Note: If the user inputs a String, it will ask them again. If a decimal number is entered, it will round down indiscriminately.
+     */
     public static int askInt(String Prompt, Boolean EndOnNewline){
         String nl = "";
         if(EndOnNewline == true){
@@ -81,6 +87,13 @@ public class MafLib{
         
     }
 
+    /**
+     * Asks the user to input a decimal number into the console.
+     * @param Prompt - What question is printed to the console.
+     * @param EndOnNewline - Whether or not the console should move to the next line before accepting input.
+     * @return What the user typed.<p>
+     * Note: If the user inputs a String, it will ask them again. If an integer is entered, it will add a ".0" to make it a decimal.
+     */
     public static double askDouble(String Prompt, Boolean EndOnNewline){
         String nl = "";
         if(EndOnNewline == true){
@@ -98,6 +111,11 @@ public class MafLib{
         
     }
 
+    /**
+     * Allows checking if a string is purely composed of letters.
+     * @param s - The string to check.
+     * @return If the string only contains letters, true is returned. Otherwise, it returns false.
+     */
     public static boolean isAlpha(String s){
         s = s.toLowerCase();
         for(int i = 0; i < s.length(); i++){
@@ -116,6 +134,11 @@ public class MafLib{
         return true;
     }
     
+    /**
+     * Allows checking if a string is purely composed of numerals.
+     * @param s - The string to check.
+     * @return If the string only contains numerals (decimals permitted), true is returned. Otherwise, it returns false.
+     */
     public static boolean isNumeric(String s){
         s = s.toLowerCase();
         for(int i = 0; i < s.length(); i++){
@@ -126,10 +149,21 @@ public class MafLib{
         return true;
     }
 
+    /**
+     * Takes user input and removes unneeded whitespace to prevent minor formatting from breaking responses. 
+     * @param s
+     * @return
+     */
     public static String reduce(String s){
         return s.strip().toLowerCase();
     }
 
+    /**
+     * Allows you to find the first occurence of an exact string in an array.
+     * @param a
+     * @param s
+     * @return
+     */
     public static int ArrayInd(Object[] a, String s){
         int ind = -1;
         for(int i = 0; i < a.length; i ++){
@@ -140,14 +174,35 @@ public class MafLib{
         return ind;
     }
 
+    /**
+     * Allows a component to be perfectly on the x-axis within a JFrame without a layout manager.
+     * @param j - What component to center.
+     * @return The value that would put the component at the exact center.
+     */
     public static int centerTextH(JComponent j){
         int h = (int) ((int) (screenWidth/2)-(j.getPreferredSize().getWidth()));
         return h;
     }
 
+    /**
+     * Allows a component to be perfectly on the y-axis within a JFrame without a layout manager.
+     * @param j - What component to center.
+     * @return The value that would put the component at the exact center.
+     */
     public int centerTextV(JComponent j){
         int v = (int) ((int) (screenHeight/2)-(j.getPreferredSize().getHeight()));
         return v;
     }
     
+    static String ans = "";
+    /**
+     * Asks the user to input text in a JFrame.
+     * @param Prompt - What the user will be asked.
+     * @param Location - What element to show the Prompt on.
+     */
+    public static void askString(String Prompt) {
+        // log.setText(Prompt);
+        frame.add(response);
+        response.setBounds(680, 500, 200, 20);
+    }
 }

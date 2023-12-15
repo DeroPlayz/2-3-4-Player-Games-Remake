@@ -10,7 +10,12 @@ public class Profile implements Serializable{
     private String name = ""; public void setName(String name){this.name = name;} public String getName(){return name;}
     private Color currentColor = Red; public void setCurrentColor(Color color){currentColor = color;} public Color getCurrentColor(){return currentColor;}
     private int slot; public void setSlot(int slot){this.slot = slot;} public int getSlot(){return slot;}
-     
+    private String prefdAction1 = "W";
+    private String prefdAction2 = "A";
+    private String prefdAction3 = "S";
+    private String prefdAction4 = "D";
+    private String prefdAction5 = "E";
+
     /**
      * Used for making new profiles.
      * @param Name - The name of the profile.
