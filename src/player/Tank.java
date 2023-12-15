@@ -1,5 +1,14 @@
 package player;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+
 public class Tank {
     /*
      * Classic Controls - Tank constantly turns and 1 button is used to shoot and move.
@@ -7,6 +16,11 @@ public class Tank {
      * But which should I prioritize?
      * I guess I'll go with classic.
      */
+
+     private int facing;
+
+     JLabel sprite = new JLabel(new ImageIcon("textures/Tank.png"));
+     
 
      private int ammo = 5;
      public void autoRefill(){
