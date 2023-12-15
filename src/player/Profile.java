@@ -36,13 +36,13 @@ public class Profile implements Serializable{
         if(currentColor == Red){col = "Red";}
         if(currentColor == Orange){col = "Orange";}
         if(currentColor == Yellow){col = "Yellow";}
-        if(currentColor == LimeGreen){col = "LimeGreen";}
-        if(currentColor == ForestGreen){col = "ForestGreen";}
+        if(currentColor == LimeGreen){col = "Lime Green";}
+        if(currentColor == ForestGreen){col = "Green";}
         if(currentColor == Cyan){col = "Cyan";}
-        if(currentColor == DarkBlue){col = "DarkBlue";}
+        if(currentColor == DarkBlue){col = "Blue";}
         if(currentColor == Lavender){col = "Lavender";}
         if(currentColor == Purple){col = "Purple";}
-        if(currentColor == HotPink){col = "HotPink";}
+        if(currentColor == HotPink){col = "Pink";}
         if(currentColor == White){col = "White";}
         if(currentColor == Black){col = "Black";}
         if(currentColor == Grey){col = "Grey";}

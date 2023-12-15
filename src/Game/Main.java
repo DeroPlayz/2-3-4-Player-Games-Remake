@@ -1,9 +1,11 @@
 package Game;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import player.Profile;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.color.ProfileDataException;
 import java.io.EOFException;
 import java.io.File;
@@ -15,6 +17,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+
+import lib.MafLib;
+import lib.MafLib.*;
 
 import static player.Profile.profiles;
 
@@ -106,10 +111,14 @@ public class Main implements Serializable{
                     p.setName((String) in.readObject());
                     ObjectInputStream inner = new ObjectInputStream(new FileInputStream("src/Profiles/" + p.getName()));
                     inner.readObject();
-                    String r = (String) inner.readObject();
-                    String g = (String) inner.readObject();
-                    String b = (String) inner.readObject();
-                    p.setCurrentColor(new Color(Integer.valueOf(r), Integer.valueOf(g), Integer.valueOf(b)));
+                    String r = String.valueOf(inner.readObject());
+                    String g = String.valueOf(inner.readObject());
+                    String b = String.valueOf(inner.readObject());
+                    
+                    int rr = Integer.parseInt(r);
+                    int gg = Integer.parseInt(g);
+                    int bb = Integer.parseInt(b);
+                    p.setCurrentColor(new Color(rr, gg, bb));
                     inner.close();
                 } catch (ClassNotFoundException e) {
                     // System.exit(0);
@@ -125,18 +134,25 @@ public class Main implements Serializable{
         }
     }
     
-    // static JFrame frame = new JFrame("2 3 4 Player Games");
+    public static JFrame frame = new JFrame("2 3 4 Player Games");
     
     public static void main(String[] args) {
-        One = new Profile("Matthew");
-        Two = new Profile("Tyson");
+        Profile One = new Profile("Matthew");
+        Profile Two = new Profile("Tyson");
         load();
         One.setCurrentColor(DarkBlue);
         save();
         System.out.println(One);
         System.out.println(Two);
-        // frame.setVisible(true);
-        // frame.setAutoRequestFocus(true);
-        // frame.setSize(1000, 600);
+        frame.setVisible(true);
+        frame.setAutoRequestFocus(true);
+        frame.setSize(1000, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        JLabel title = new JLabel("FUCK");
+        title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+        frame.add(title);
+        title.setBounds(MafLib.centerTextH(title), 100, 100, 100);
+        
     }
 }
