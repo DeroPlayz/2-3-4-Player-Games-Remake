@@ -1,4 +1,5 @@
 package Game;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -134,14 +135,21 @@ public class Main implements Serializable{
         save();
         load();
         save();
-        JLabel title = new JLabel("FUCK");
+        JLabel title = new JLabel("FUNKY TIME");
+        JButton chicken = new JButton("ChickenRun.png");
+
         frame.setVisible(true);
         frame.setAutoRequestFocus(true);
         frame.setSize(1000, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
         frame.add(title);
-        title.setBounds(MafLib.centerTextH(title), 100, 100, 100);
+        // frame.add(chicken);
+
+        title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
+        title.setBounds(MafLib.centerTextH(title), 100, frame.getWidth(), 100);
+
+        chicken.setBounds(MafLib.centerTextH(chicken), 150, 100, 100);
+        
     }
 }
