@@ -1,12 +1,7 @@
 package player;
 
 import java.awt.Color;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import static Game.Main.*;
 
 public class Profile implements Serializable{
@@ -37,6 +32,20 @@ public class Profile implements Serializable{
     }
 
     public String toString(){
-        return name + "- Currently " + currentColor;
+        String col = "";
+        if(currentColor == Red){col = "Red";}
+        if(currentColor == Orange){col = "Orange";}
+        if(currentColor == Yellow){col = "Yellow";}
+        if(currentColor == LimeGreen){col = "LimeGreen";}
+        if(currentColor == ForestGreen){col = "ForestGreen";}
+        if(currentColor == Cyan){col = "Cyan";}
+        if(currentColor == DarkBlue){col = "DarkBlue";}
+        if(currentColor == Lavender){col = "Lavender";}
+        if(currentColor == Purple){col = "Purple";}
+        if(currentColor == HotPink){col = "HotPink";}
+        if(currentColor == White){col = "White";}
+        if(currentColor == Black){col = "Black";}
+        if(currentColor == Grey){col = "Grey";}
+        return name + " - Currently " + col;
     }
 }

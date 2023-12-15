@@ -105,12 +105,12 @@ public class Main implements Serializable{
                 try {
                     p.setName((String) in.readObject());
                     ObjectInputStream inner = new ObjectInputStream(new FileInputStream("src/Profiles/" + p.getName()));
-                    in.readObject();
-                    int r = inner.readInt();
-                    int g = inner.readInt();
-                    int b = inner.readInt();
-                    p.setCurrentColor(new Color(r, g, b));
-                    
+                    inner.readObject();
+                    String r = (String) inner.readObject();
+                    String g = (String) inner.readObject();
+                    String b = (String) inner.readObject();
+                    p.setCurrentColor(new Color(Integer.valueOf(r), Integer.valueOf(g), Integer.valueOf(b)));
+                    inner.close();
                 } catch (ClassNotFoundException e) {
                     // System.exit(0);
                     e.printStackTrace();
@@ -125,18 +125,18 @@ public class Main implements Serializable{
         }
     }
     
-    static JFrame frame = new JFrame("2 3 4 Player Games");
+    // static JFrame frame = new JFrame("2 3 4 Player Games");
     
     public static void main(String[] args) {
         One = new Profile("Matthew");
         Two = new Profile("Tyson");
         load();
+        One.setCurrentColor(DarkBlue);
         save();
         System.out.println(One);
         System.out.println(Two);
-        frame.setVisible(true);
-        frame.setAutoRequestFocus(true);
-        frame.setSize(1000, 600);
-        
+        // frame.setVisible(true);
+        // frame.setAutoRequestFocus(true);
+        // frame.setSize(1000, 600);
     }
 }
