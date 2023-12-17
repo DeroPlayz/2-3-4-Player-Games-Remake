@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import lib.MafLib;
+import static lib.MafLib.*;
 import static player.Profile.profiles;
 
 public class Main implements Serializable{
@@ -147,9 +147,9 @@ public class Main implements Serializable{
         // frame.add(chicken);
 
         title.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
-        title.setBounds(MafLib.centerTextH(title), 100, frame.getWidth(), 100);
+        title.setBounds(centerTextH(title), 100, frame.getWidth(), 100);
 
-        chicken.setBounds(MafLib.centerTextH(chicken), 150, 100, 100);
+        chicken.setBounds(centerTextH(chicken), 150, 100, 100);
         
     }
 }
