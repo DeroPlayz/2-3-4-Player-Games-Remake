@@ -18,9 +18,6 @@ import javax.swing.JTextField;
 public class MafLib{
     static Toolkit toolkit = Toolkit.getDefaultToolkit();
     static Dimension screen = toolkit.getScreenSize();
-    
-    static int screenWidth = (int) screen.getWidth();
-    static int screenHeight = (int) screen.getHeight();
 
     public static JTextField response = new JTextField();
     public static boolean asking = false;
@@ -180,7 +177,8 @@ public class MafLib{
      * @return The value that would put the component at the exact center.
      */
     public static int centerTextH(JComponent j){
-        int h = (int) ((int) (screenWidth/2)-(j.getPreferredSize().getWidth()));
+        int screenWidth = (int) screen.getWidth();
+        int h = (int) ((int) screenWidth-j.getPreferredSize().getWidth())/2;
         return h;
     }
 
@@ -190,10 +188,33 @@ public class MafLib{
      * @return The value that would put the component at the exact center.
      */
     public int centerTextV(JComponent j){
-        int v = (int) ((int) (screenHeight/2)-(j.getPreferredSize().getHeight()));
+        int screenHeight = (int) screen.getHeight();
+        int v = (int) ((int) screenHeight-j.getPreferredSize().getHeight())/2;
         return v;
     }
     
+    /**
+     * Allows a component's horizontal size to be just big enough to fully show its contents.
+     * @param j - The component to get the precise size for.
+     * @return The value that makes the component just wide enough to fit its contents.
+     */
+    public static int fitContentsH(JComponent j){
+        int h = (int) j.getPreferredSize().getWidth();
+        return h;
+    }
+
+    /**
+     * Allows a component's vertical size to be just big enough to fully show its contents.
+     * @param j - The component to get the precise size for.
+     * @return The value that makes the component just tall enough to fit its contents.
+     */
+    public static int fitContentsV(JComponent j){
+        int v = (int) j.getPreferredSize().getWidth();
+        return v;
+    }
+
+
+
     static String ans = "";
     /**
      * Asks the user to input text in a JFrame.
